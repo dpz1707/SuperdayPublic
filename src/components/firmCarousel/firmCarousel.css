@@ -1,0 +1,72 @@
+/* firmCarousel.css */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* This will center the child horizontally */
+  justify-content: center;
+  /* This will center the child vertically if the container has a defined height */
+  max-width: 100%;
+}
+
+
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 75%;
+  height: auto;
+  /* Adjust based on your layout, auto to accommodate image height */
+  display: flex;
+  align-items: center;
+  /* Center images vertically */
+}
+
+.carousel {
+  display: flex;
+  animation: scroll 10s linear infinite;
+  /* Adjust timing for speed */
+  justify-content: start;
+  /* Align items to the start */
+}
+
+.slide {
+  flex: 0 0 auto;
+  /* Do not grow, do not shrink, and base width on the content */
+  max-height: 20px;
+  /* Maximum height of the images */
+  object-fit: contain;
+  /* Adjust how images fit into the box, preserving aspect ratio without cropping */
+  margin: 0 20px;
+  /* Horizontal margin of 30px and no vertical margin */
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+    /* Moves the carousel by half its total width for a loop */
+  }
+}
+
+/* Fading edges */
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 10%;
+  /* Adjust the width of the fading area */
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  /* Ensures clicks pass through */
+  background: linear-gradient(to right, #f8fbff, transparent);
+}
+
+.carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8fbff, transparent);
+}
